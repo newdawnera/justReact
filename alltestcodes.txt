@@ -1,0 +1,420 @@
+from app.js
+------
+import "./App.css";
+
+function App() {
+  return (
+    <div className="App">
+      <Job salary={90000} position="Senior SDE" company="Amazon" />
+      <Job salary={12000} position="Junior SDE" company="Google" />
+      <Job salary={43000} position="Project Manager" company="Netflix" />
+    </div>
+  );
+}
+
+const Job = (props) => {
+  return (
+    <div>
+      <h1>{props.salary}</h1>
+      <h1>{props.position}</h1>
+      <h1>{props.company}</h1>
+    </div>
+  );
+};
+
+export default App;
+------
+
+
+function App() {
+  const age = 115;
+  return age >= 18 ? (
+    <h1>Over Age</h1>
+  ) : (
+    <div className="App">
+      <h1 className="age">Under age</h1>
+    </div>
+  );
+}
+
+
+------
+
+function App() {
+  const age = 11;
+  return (
+    <div className="App">
+      {age >= 18 ? <h1>Over Age</h1> : <h1 className="age">Under age</h1>}
+    </div>
+  );
+}
+
+--------
+function App() {
+  const age = 111;
+  const isGreen = false;
+  return (
+    <div className="App">
+      {age >= 18 ? <h1>Over Age</h1> : <h1 className="age">Under age</h1>}
+      {isGreen || <h1 style={{ color: "red" }}>Testing the color</h1>}
+    </div>
+  );
+}
+------
+
+function App() {
+  const age = 111;
+  const isGreen = false;
+  return (
+    <div className="App">
+      {age >= 18 ? <h1>Over Age</h1> : <h1 className="age">Under age</h1>}
+      <h1 style={{ color: isGreen ? "green" : "red" }}>Testing the color</h1>
+    </div>
+  );
+}
+
+--------
+
+function App() {
+  const names = ["dan", "ben", "toni", "yahya", "tom"];
+  const stat = names.filter((element) => {
+    return element.length <= 4;
+  });
+
+  return <div className="App">{stat + ""}</div>;
+}
+--------
+function App() {
+  const names = ["dan", "ben", "toni", "yahya", "tom"];
+  const stat = names.filter((element) => {
+    return element.length === 4;
+  });
+
+  return <div className="App">{stat}</div>;
+}
+-------
+
+function App() {
+  const names = ["dan", "ben", "toni", "yahya", "tom"];
+  const stat = names.map((element) => {
+    return <h1>{element}</h1>;
+  });
+
+  return <div className="App">{stat}</div>;
+}
+
+------
+function App() {
+  const names = ["dan", "ben", "toni", "yahya", "tom"];
+
+  return (
+    <div className="App">
+      {names.map((element, index) => (
+        <h1 index={index}>{element}</h1>
+      ))}
+    </div>
+  );
+}
+-------
+function App() {
+  const names = ["dan", "ben", "toni", "yahya", "tom"];
+
+  return (
+    <div className="App">
+      {names.map((element) => (
+        <h1>{element}</h1>
+      ))}
+    </div>
+  );
+}
+
+------
+import "./App.css";
+
+function App() {
+  const users = [
+    {
+      name: "dan",
+      age: 43,
+    },
+    {
+      name: "toni",
+      age: 33,
+    },
+    {
+      name: "lucky",
+      age: 23,
+    },
+  ];
+
+  return (
+    <div className="App">
+      {users.map((user) => (
+        <User name={user.name} age={user.age} />
+      ))}
+    </div>
+  );
+}
+
+const User = (props) => {
+  return (
+    <h1>
+      {props.name} {props.age}
+    </h1>
+  );
+};
+export default App;
+------
+import "./App.css";
+
+function App() {
+  const planets = [
+    { name: "mars", isGasPlanet: false },
+    { name: "Earth", isGasPlanet: false },
+    { name: "Jupiter", isGasPlanet: true },
+    { name: "Venus", isGasPlanet: false },
+    { name: "Uranus", isGasPlanet: false },
+    { name: "Neptune", isGasPlanet: false },
+  ];
+
+  return (
+    <div className="App">
+      {planets.map((planet) => {
+        return planet.isGasPlanet && <Planet name={planet.name} />;
+      })}
+    </div>
+  );
+}
+
+const Planet = (props) => {
+  return <h1>{props.name} is a gas Planet</h1>;
+};
+export default App;
+
+-----
+
+import "./App.css";
+
+function App() {
+  const planets = [
+    { name: "mars", isGasPlanet: false },
+    { name: "Earth", isGasPlanet: false },
+    { name: "Jupiter", isGasPlanet: true },
+    { name: "Venus", isGasPlanet: false },
+    { name: "Uranus", isGasPlanet: true },
+    { name: "Neptune", isGasPlanet: true },
+  ];
+
+  return (
+    <div className="App">
+      {planets.map((planet) => {
+        return !planet.isGasPlanet && <Planet name={planet.name} />;
+      })}
+    </div>
+  );
+}
+
+const Planet = (props) => {
+  return <h1>{props.name} is a gas Planet</h1>;
+};
+export default App;
+---------
+import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [age, setAge] = useState(0);
+  const ageIncrease = () => {
+    setAge((prevAge) => prevAge + 1);
+  };
+
+  return (
+    <div className="App">
+      {age} <button onClick={ageIncrease}>Increase</button>
+    </div>
+  );
+}
+
+export default App;
+
+--------
+import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [num, setNum] = useState(0);
+
+  const increase = () => {
+    setNum((num) => num + 1);
+  };
+
+  const decrease = () => {
+    setNum((num) => num - 1);
+  };
+
+  return (
+    <div className="App">
+      <h1>
+        <button onClick={decrease}>-</button>
+        <span style={{ padding: "10px" }}>{num}</span>
+        <button onClick={increase}>+</button>
+      </h1>
+    </div>
+  );
+}
+
+export default App;
+
+----------
+import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [num, setNum] = useState(0);
+
+  const increase = () => {
+    setNum(num + 1);
+  };
+
+  const decrease = () => {
+    setNum(num - 1);
+  };
+
+  return (
+    <div className="App">
+      <h1>
+        <button onClick={decrease}>-</button>
+        <span style={{ padding: "10px" }}>{num}</span>
+        <button onClick={increase}>+</button>
+      </h1>
+    </div>
+  );
+}
+
+export default App;
+-----
+import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [input, setInput] = useState("");
+
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
+
+  return (
+    <div className="App">
+      <input type="text" onChange={handleInput} />
+
+      <h1>{input}</h1>
+    </div>
+  );
+}
+
+export default App;
+------
+import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [showText, setShowText] = useState(true);
+
+  return (
+    <div className="App">
+      <button
+        onClick={() => {
+          setShowText(!showText);
+        }}
+      >
+        Show/hide
+      </button>
+      {showText && <h1>I am Daniel</h1>}
+    </div>
+  );
+}
+
+export default App;
+---------
+import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [textColor, setTextColor] = useState(true);
+
+  return (
+    <div className="App">
+      <button
+        onClick={() => {
+          setTextColor(!textColor);
+        }}
+      >
+        Change Color
+      </button>
+      <h1 style={{ color: textColor ? "green" : "blue" }}>I am Daniel</h1>
+    </div>
+  );
+}
+
+export default App;
+--------
+import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [textColor, setTextColor] = useState("blue");
+
+  return (
+    <div className="App">
+      <button
+        onClick={() => {
+          setTextColor(textColor === "blue" ? "green" : "blue");
+        }}
+      >
+        Change Color
+      </button>
+      <h1 style={{ color: textColor }}>I am Daniel</h1>
+    </div>
+  );
+}
+
+export default App;
+--------------
+import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div className="App">
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        Increase
+      </button>
+      <button
+        onClick={() => {
+          setCount(count - 1);
+        }}
+      >
+        Decrease
+      </button>
+      <button
+        onClick={() => {
+          setCount(count === 0 ? 0 : 0); //we could also use setCount(0);
+        }}
+      >
+        Set to Zero
+      </button>
+      <h1 style={{ color: "green" }}>{count}</h1>
+    </div>
+  );
+}
+
+export default App;
+---------
+
+
